@@ -1,0 +1,86 @@
+<mat-card>
+
+    <h1 class="mt-20 ml-20">{{pageTitle}}</h1>
+    <div class="col-md-1" style="margin-left: 90%;">
+        <button mat-stroked-button color="primary" (click)="backToPreviousRoute()">
+            <mat-icon>arrow_back</mat-icon>Back</button>
+    </div>
+
+    <div class="container mt-20">
+        <div class="row">
+
+            <div class="col-md-10 offset-md-2">
+
+                <form [formGroup]="addtaskForm">
+
+                    <mat-form-field class="w100">
+                        <mat-label>Enter Title</mat-label>
+                        <input type="text" name="title" required formControlName="title" placeholder="Enter here"
+                            matInput>
+                    </mat-form-field>
+
+                    <mat-form-field class="w100">
+                        <mat-label>Enter Description</mat-label>
+                        <textarea type="text" name="description" placeholder="Enter here" formControlName="description"
+                            rows="5" matInput></textarea>
+                    </mat-form-field>
+
+
+
+                    <!-- <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w100">
+                                <mat-label>Maximum Marks</mat-label>
+                                <input type="text" name="maxMarks" placeholder="Enter here" formControlName="maxMarks"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                            <mat-form-field class="w100">
+                                <mat-label>Number of Questions</mat-label>
+                                <input type="text" name="numberOfQuestions" placeholder="Enter here"
+                                    formControlName="numberOfQuestions" matInput>
+                            </mat-form-field>
+                        </div>
+                    </div> -->
+
+
+
+                    <div class="row">
+                        <mat-form-field>
+                            <mat-label>Select Status</mat-label>
+                            <mat-select formControlName="taskStatus">
+                                <mat-option *ngFor="let c of allStatus" [value]="c.value">
+                                    {{c.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field>
+                        <mat-label>Choose Due date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="taskDueDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+
+
+                    <div class="container text-center mb-20">
+                        <button mat-raised-button color="accent" *ngIf="pageTitle!='Edit Task'" (click)="addTask()">Add
+                            Task</button>
+
+                        <button mat-raised-button color="accent" *ngIf="pageTitle=='Edit Task'"
+                            (click)="updateTask()">Update Task</button>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</mat-card>

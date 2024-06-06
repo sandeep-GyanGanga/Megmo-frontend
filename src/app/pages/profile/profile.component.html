@@ -1,0 +1,75 @@
+<mat-card *ngIf="user!=null">
+    <h1 class="mt-20  ml-20">Your Profile Details</h1>
+
+    <div class="col-md-1" style="margin-left: 90%;">
+        <button mat-stroked-button color="primary" (click)="backToPreviousRoute()">
+            <mat-icon>arrow_back</mat-icon>Back</button>
+    </div>
+
+    <!-- {{user|json}} -->
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+
+            <div class="cotainer">
+
+                <div class="container text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png"
+                        alt="" class="profile-image">
+                </div>
+
+                <h1 class="mt-20 text-center">{{user.firstname}} {{user.lastname}}</h1>
+
+                <div class="row">
+
+                    <div class="col-md-10 offset-md-1">
+
+                        <table class="table text-center">
+                            <tr>
+
+                                <td>Username</td>
+
+                                <td>{{user.username}}</td>
+                            </tr>
+
+                            <tr>
+
+                                <td>User id</td>
+
+                                <td>{{user.id}}</td>
+                            </tr>
+                            <tr>
+
+                                <td>Phone</td>
+
+                                <td>{{user.phone}}</td>
+                            </tr>
+                            <tr>
+
+                                <td>Role</td>
+
+                                <td>{{user.authorities[0].authority}}</td>
+                            </tr>
+
+                            <tr>
+
+                                <td>Status</td>
+
+                                <td>{{user.enabled?"ACTIVE":"INACTIVE"}}</td>
+
+                                <td *ngIf="user.enabled!=true">Disabled</td>
+
+                            </tr>
+                        </table>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions style="margin-left: 40%;">
+        <button mat-raised-button color="primary">Update</button> &nbsp;
+        <button mat-raised-button color="accent">SHARE</button>
+    </mat-card-actions>
+</mat-card>

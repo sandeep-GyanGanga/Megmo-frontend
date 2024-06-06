@@ -1,0 +1,83 @@
+<h1 class="mt-20 ml-20">All Tasks </h1>
+
+<div class="add-button-container">
+    <button mat-raised-button color="primary" [routerLink]="['/add-task']" routerLinkActive="router-link-active">Add
+        Task</button>
+
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+    </ng-container>
+
+    <!-- taskTitle Column -->
+    <ng-container matColumnDef="taskTitle">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.taskTitle}} </td>
+    </ng-container>
+
+    <!-- taskDescription Column -->
+    <ng-container matColumnDef="taskDescription">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element"> {{element.taskDescription}} </td>
+    </ng-container>
+
+    <!-- taskDueDate Column -->
+    <ng-container matColumnDef="taskDueDate">
+        <th mat-header-cell *matHeaderCellDef>Due Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.taskDueDate | date}} </td>
+    </ng-container>
+
+    <!-- taskStatus Column -->
+    <ng-container matColumnDef="taskStatus">
+        <th mat-header-cell *matHeaderCellDef> Task Status</th>
+        <td mat-cell *matCellDef="let element"> {{element.taskStatus}} </td>
+    </ng-container>
+
+
+    <!-- totalMarks Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+
+            <mat-icon (click)="editTask(element)">edit</mat-icon>
+            <mat-icon style="margin-left: 10px;" (click)="deleteTask(element)">delete</mat-icon>
+
+
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div *ngIf="dataSource.length==0" class="mt-20">
+    <h2>No Record Available!</h2>
+</div>
+
+<!-- paginatorv -->
+
+<div class="mt-20 ml-20">
+    <nav aria-label="Page navigation example mt-20">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" (click)="getAllTask(currentPageIndex-1)">Previous</a></li>
+
+            <div *ngFor="let item of totalPages">
+
+            </div>
+
+            <li class="page-item"><a class="page-link" (click)="getAllTask(1)">1</a></li>
+            <li class="page-item"><a class="page-link" (click)="getAllTask(2)">2</a></li>
+            <li class="page-item"><a class="page-link" (click)="getAllTask(3)">3</a></li>
+            <li class="page-item"><a class="page-link" *ngIf="currentPageIndex < totalPages-1"
+                    (click)="getAllTask(currentPageIndex+1)">Next</a></li>
+        </ul>
+    </nav>
+</div>
