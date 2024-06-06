@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiCommonService } from 'src/app/services/api-common.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +22,19 @@ export class SignUpComponent implements OnInit {
 
   }
 
-  constructor(private apicommonService: ApiCommonService, private notification: NotificationService, private router: Router) {
+  addUser!: FormGroup;
+
+
+  constructor(private apicommonService: ApiCommonService, private notification: NotificationService, private router: Router, private _fb: FormBuilder) {
+
+    this.addUser = this._fb.group({
+      username: [null, Validators.required],
+      password: [null, Validators.required],
+      firstname: [null, Validators.required],
+      lastname: [null, Validators.required],
+      phone: [null, [Validators.required]],
+      email: [null, Validators.required]
+    });
 
 
   }
@@ -32,22 +46,26 @@ export class SignUpComponent implements OnInit {
   }
 
   formSubmit() {
-    if (this.User.username == '' || this.User.username == null) {
-      // alert('User is required!!')
-      return;
+    if (this.addUser.valid) {
+
+      this.apicommonService.post('/users/', this.addUser.value).subscribe((res: any) => {
+
+      }, (err: any) => {
+        // this.notification.showError('Something went wrong');
+
+      },
+        () => {
+          Swal.fire('Success', 'You have Register Successfully', 'success');
+
+          this.router.navigate(['/login']);
+
+        })
+
     }
-    this.apicommonService.post('/users/', this.User).subscribe((res: any) => {
+    else {
+      Swal.fire('Error', 'Form is Invalid!', 'error');
 
-    }, (err: any) => {
-      // this.notification.showError('Something went wrong');
-
-    },
-      () => {
-        this.notification.showSuccess('you Have Registered Successfully');
-        this.router.navigate(['/login']);
-
-      })
-
+    }
 
 
   }

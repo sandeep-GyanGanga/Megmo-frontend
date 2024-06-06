@@ -123,20 +123,6 @@ export class AddTaskComponent {
     }
   }
 
-  getQuizeDetails(qId: any) {
-
-    this.apiCommonService.get('/quiz/' + qId).subscribe((res: any) => {
-      console.log("res of get quiz is ", res);
-      this.addtaskForm.controls['qId'].setValue(res.qId);
-      this.addtaskForm.controls['title'].setValue(res.title);
-      this.addtaskForm.controls['description'].setValue(res.decription);
-      this.addtaskForm.controls['maxMarks'].setValue(res.maxMarks);
-      this.addtaskForm.controls['numberOfQuestions'].setValue(res.numberOfQuestions);
-      this.addtaskForm.controls['cid'].setValue(res.category.cid);
-      this.addtaskForm.controls['active'].setValue(res.active)
-
-    })
-  }
 
 
 }

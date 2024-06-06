@@ -1,4 +1,4 @@
-<!-- <mat-toolbar color="primary" class="navbar">
+<mat-toolbar color="primary" class="navbar">
 
     <button mat-button class="example-icon" routerLink="/" aria-label="Example icon-button with menu icon">
         <mat-icon>task</mat-icon>
@@ -31,35 +31,4 @@
         aria-label="Example icon-button with heart icon">Logout
     </button>
 
-</mat-toolbar> -->
-
-<nav class="navbar navbar-expand-lg " style="background-color: #93c0e0;">
-    <div class="container-fluid">
-        <a class="navbar-brand" [routerLink]="['']" routerLinkActive="router-link-active">Megmo Tracker</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" routerLinkActive="router-link-active" aria-current="page"
-                        *ngIf="!loginService.isLoggedIn()" routerLink="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" *ngIf="!loginService.isLoggedIn()" routerLink="/sign-up">Sign-up</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" *ngIf="loginService.isLoggedIn() && username!=''"> Hii
-                        {{username.firstname}}!</a>
-                </li>
-
-            </ul>
-            <form class="d-flex" role="search">
-                <button class="btn btn-outline-success" *ngIf="loginService.isLoggedIn()"
-                    (click)="logout()">Logout</button>
-            </form>
-        </div>
-    </div>
-</nav>
+</mat-toolbar>

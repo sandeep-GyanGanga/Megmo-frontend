@@ -16,13 +16,13 @@ export class LoaderInterceptorService {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.requests.length == 0) this.ngxService.start();
+    if (this.requests.length == 0) this.ngxService.start();//starting loader
     this.requests.push(req);
     return next.handle(req).pipe(
       finalize(
         () => {
           this.requests.pop();
-          if (this.requests.length == 0) this.ngxService.stop();
+          if (this.requests.length == 0) this.ngxService.stop();// stoping loader
         }
       )
     )

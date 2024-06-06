@@ -25,7 +25,6 @@ export class LoginComponent {
     let token: any;
     console.log('calling', this.loginData);
     if (this.loginData.username.trim() == '' || this.loginData.password.trim() == '') {
-      // this.notification.showError('Username or Password should not be blank');
       Swal.fire('Error', 'Username and password should not be blank!', 'error');
 
 
@@ -33,7 +32,6 @@ export class LoginComponent {
     }
 
     this.loginService.generateToken('/generate-token', this.loginData).subscribe((res: any) => {
-
       console.log("generated token is ", res);
 
       token = res.token;
@@ -42,7 +40,6 @@ export class LoginComponent {
     },
       (err: any) => {
         this.notification.showError('Username or Password is wrong');
-
       },
       () => {
 
@@ -55,24 +52,22 @@ export class LoginComponent {
           this.loginService.setUser(user);
           this.loginService.loginStatusSubject.next(true);
 
-
-
           if (this.loginService.getUserRole() == "NORMAL") {
-
-            // window.location.href = '/user-dashboard';
             this.router.navigate(['task-table']);
-
-
           }
-
           else {
             this.loginService.logout();
           }
         });
-
-
       })
 
+  }
+
+  resetForm() {
+    this.loginData = {
+      'username': '',
+      'password': ''
+    }
   }
 
 

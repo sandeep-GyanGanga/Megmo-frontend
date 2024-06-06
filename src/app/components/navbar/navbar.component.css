@@ -9,3 +9,9 @@
     --mat-toolbar-container-background-image: linear-gradient(160deg, #e2e5e8 0%, #ffffff 100%);
 
   }
+
+  .nav-item-container{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+  }
