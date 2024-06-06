@@ -35,7 +35,7 @@
 
 <nav class="navbar navbar-expand-lg " style="background-color: #93c0e0;">
     <div class="container-fluid">
-        <a class="navbar-brand">Megmo Tracker</a>
+        <a class="navbar-brand" [routerLink]="['']" routerLinkActive="router-link-active">Megmo Tracker</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,8 +43,8 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" *ngIf="!loginService.isLoggedIn()"
-                        routerLink="/login">Login</a>
+                    <a class="nav-link active" routerLinkActive="router-link-active" aria-current="page"
+                        *ngIf="!loginService.isLoggedIn()" routerLink="/login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" *ngIf="!loginService.isLoggedIn()" routerLink="/sign-up">Sign-up</a>

@@ -52,4 +52,15 @@ export class SignUpComponent implements OnInit {
 
   }
 
+  resetForm() {
+    this.User = {
+      'username': '',
+      'password': '',
+      "firstname": '',
+      "lastname": '',
+      "phone": '',
+      "email": ''
+    };
+  }
+
 }

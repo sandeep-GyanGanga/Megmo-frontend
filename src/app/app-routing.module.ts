@@ -14,7 +14,7 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
 
-  { path: 'home-page', component: HomePageComponent, pathMatch: 'full' },
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
   { path: 'task-table', component: TaskTableComponent, pathMatch: 'full' },
   { path: 'add-task', component: AddTaskComponent, pathMatch: 'full' },
 ];
